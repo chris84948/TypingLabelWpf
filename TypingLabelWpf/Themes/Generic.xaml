@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:TypingLabelWpf">
+    <Style TargetType="{x:Type local:TypingLabel}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Padding"
+                Value="5" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Top" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TypingLabel}">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="true">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <ContentPresenter.Content>
+                                <TextBlock FontSize="0.1"
+                                           TextAlignment="{Binding TextAlignment,
+                                                                   RelativeSource={RelativeSource TemplatedParent}}"
+                                           TextWrapping="{Binding TextWrapping,
+                                                                  RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Run FontSize="{TemplateBinding FontSize}"
+                                         Text="{Binding InternalText,
+                                                        Mode=OneWay,
+                                                        RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <Run x:Name="PART_CursorTransparent"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         Foreground="Transparent"
+                                         Text="" />
+                                    <Run x:Name="PART_Cursor"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         Text="|" />
+                                </TextBlock>
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
