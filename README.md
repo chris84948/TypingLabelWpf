@@ -22,3 +22,5 @@ The label acts like a regular label, so font size, font family, foreground etc a
 - RepeatBehavior, Once or Forever (Once is default)
 - StartDelayInMs (0ms is default)
 - EndDelayInMs (5000ms is default)
+
+[Nuget Package available here](https://www.nuget.org/packages/TypingLabelWpf/)
